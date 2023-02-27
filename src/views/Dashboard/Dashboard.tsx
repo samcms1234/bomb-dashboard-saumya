@@ -1,96 +1,80 @@
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import bg from './assets/background.jpg';
+import React from 'react'
+import Page from '../../components/Page';
+import {createGlobalStyle} from 'styled-components';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import Summary from './components/Summary';
+import HomeImage from '../../assets/img/background.jpg';
+import { Helmet } from 'react-helmet';
+import Boardroom from './components/Boardroom';
+import BombFarms from './components/BombFarms';
+import Bonds from './components/Bonds';
+import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
+import { Box, Card, CardContent, Button, Typography, Grid, Paper } from '@material-ui/core';
+import ProgressCountdown from '../Boardroom/components/ProgressCountdown';
+import useCurrentEpoch from '../../hooks/useCurrentEpoch';
+import useTreasuryAllocationTimes from '../../hooks/useTreasuryAllocationTimes';
+import moment from 'moment';
+import TokenSymbol from '../../components/TokenSymbol';
+import useBombFinance from '../../hooks/useBombFinance';
+import MetamaskFox from '../../assets/img/metamask-fox.svg';
+import { roundAndFormatNumber } from '../../0x';
+import useBombStats from '../../hooks/useBombStats';
+import usebShareStats from '../../hooks/usebShareStats';
+import useBondStats from '../../hooks/useBondStats';
+import { Bomb as bombTesting } from '../../bomb-finance/deployments/deployments.testing.json';
+import { Bomb as bombProd } from '../../bomb-finance/deployments/deployments.mainnet.json';
+import CountUp from 'react-countup';
+import useTotalValueLocked from '../../hooks/useTotalValueLocked';
+import { ReactComponent as IconDiscord } from '../../assets/img/discord.svg';
+import { getDisplayBalance } from '../../utils/formatBalance';
+import useTotalStakedOnBoardroom from '../../hooks/useTotalStakedOnBoardroom';
+import BShareimg from '../../assets/img/bshare-256.png';
+import bsharebnbimg from '../../assets/img/bshare-bnb-LP.png';
+import Bombimg from '../../assets/img/bomb1.png';
+import BBondimg from '../../assets/img/bbond.png';
+import bomb_bitcoin from '../../assets/img/bomb-bitcoin-LP.png';
+import useCashPriceInEstimatedTWAP from '../../hooks/useCashPriceInEstimatedTWAP';
+import useCashPriceInLastTWAP from '../../hooks/useCashPriceInLastTWAP';
+import Label from '../../components/Label';
+import Value from '../../components/Value';
+import useEarningsOnBoardroom from '../../hooks/useEarningsOnBoardroom';
+import useStakedBalanceOnBoardroom from '../../hooks/useStakedBalanceOnBoardroom';
+import useStakedTokenPriceInDollars from '../../hooks/useStakedTokenPriceInDollars';
+import bondimg from '../../assets/img/xbomb.png';
+import useTokenBalance from '../../hooks/useTokenBalance';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      backgroundImage: `url(${bg})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-      height: '100vh',
-      marginTop: theme.spacing(2)
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      backgroundColor: 'rgba(29, 52, 76, 0.3)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    heading: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.primary,
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
-      fontWeight: 'bold',
-      marginBottom: theme.spacing(2)
-    },
-    transparentBox: {
-      backgroundColor: 'rgba(29, 52, 76, 0.7)',
-      padding: theme.spacing(2),
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%'
-    },
-    table: {
-      width: '70%'
-    }
-  })
-);
+const BackgroundImage = createGlobalStyle`
+  body {
+    background: url(${HomeImage}) repeat !important;
+    background-size: cover !important;
+    background-color: #171923;
+  }
+`;
 
+const TITLE = 'bomb.money | Dashboard'
 
-const Dashboard: React.FC = () => {
-  const classes = useStyles();
+const Dashboard = () => {
+  const { path } = useRouteMatch();
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Typography variant="subtitle1">
-              Bomb Finance Summary
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>
-            <Typography variant="subtitle1">
-              Invest now
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>
-            <Typography variant="subtitle1">
-              Latest News
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Typography variant="subtitle1">
-              Bomb Farms
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Typography variant="subtitle1">
-              Bonds
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
-  );
-};
+    <Switch>
+      <Page>
+        <BackgroundImage />
+              <Helmet>
+        <title>{TITLE}</title>
+      </Helmet>
+      <Route exact path={path}>
+          <Summary/>
+          <Boardroom/>
+          <BombFarms/>
+          <Bonds/>
+      </Route>
+            
+            
+      </Page>
+    </Switch>
+  )
+}
 
-export default Dashboard;
+export default Dashboard
