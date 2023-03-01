@@ -36,7 +36,7 @@ const Bonds = (props) => {
                 <div style={{display:'flex', gap:'7rem', flex:'3', marginTop:'1.5rem'}}>
                     <div style={{display:'flex', flexDirection:'column', gap:'.8rem'}}>
                         <span style={{color:'rgba(195, 197, 203, 1)'}}>Current Price: (Bomb)^2</span>
-                        <span style={{fontSize:'1.3rem'}}>BBond = {tBondPriceInBNB ? tBondPriceInBNB : '-.----'} BTCB</span>
+                        <span style={{fontSize:'1.3rem'}}>BBond = {Number(tBondStats?.tokenInFtm).toFixed(4)} BTCB</span>
                     </div>
                     <div style={{display:'flex', flexDirection:'column', gap:'.4rem', textAlign:'center'}}>
                         <span>Available to redeem: </span>
