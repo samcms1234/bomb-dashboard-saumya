@@ -44,9 +44,9 @@ const btcCard = (props) => {
                     justifyContent: 'center',
                     width: `${props.width}`
                 }}>
-                    <Button variant='outlined' style={{ borderColor: 'white', borderRadius: '1rem' }}>Deposit</Button>
-                    <Button variant='outlined' style={{ borderColor: 'white', borderRadius: '1rem' }}>Withdraw</Button>
-                    <Button variant='outlined' style={{ borderColor: 'white', borderRadius: '1rem' }}>Claim Rewards</Button>
+                    <Button variant='outlined' onClick={props.approve} style={{ borderColor: 'white', borderRadius: '1rem' }}>Deposit</Button>
+                    <Button variant='outlined' onClick={props.onReward} style={{ borderColor: 'white', borderRadius: '1rem' }}>Withdraw</Button>
+                    <Button variant='outlined' onClick={props.onRedeem} style={{ borderColor: 'white', borderRadius: '1rem' }}>Claim Rewards</Button>
                 </div>
             </div>
         </div >

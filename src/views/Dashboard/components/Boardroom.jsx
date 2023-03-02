@@ -11,6 +11,13 @@ import useStakedBalanceOnBoardroom from '../../../hooks/useStakedBalanceOnBoardr
 import useBombStats from '../../../hooks/useBombStats';
 import useFetchBoardroomAPR from '../../../hooks/useFetchBoardroomAPR'
 
+import useApprove, { ApprovalState } from '../../../hooks/useApprove';
+import useBombFinance from '../../../hooks/useBombFinance';
+import useHarvestFromBoardroom from '../../../hooks/useHarvestFromBoardroom';
+import useClaimRewardCheck from '../../../hooks/boardroom/useClaimRewardCheck';
+import useRedeemOnBoardroom from '../../../hooks/useRedeemOnBoardroom';
+import useWithdrawCheck from '../../../hooks/boardroom/useWithdrawCheck';
+
 const card = {
     upper: {
         backdropFilter: 'blur(2px) saturate(180%)',
@@ -46,6 +53,12 @@ const Boardroom = () => {
       );
     const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
 
+    const bombFinance = useBombFinance();
+    const [approveStatus, approve] = useApprove(bombFinance.BSHARE, bombFinance.contracts.Boardroom.address);
+    const { onReward } = useHarvestFromBoardroom();
+    const canClaimReward = useClaimRewardCheck();
+    const canWithdraw = useWithdrawCheck();
+    const { onRedeem } = useRedeemOnBoardroom();
     return (
         <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <div>
@@ -90,6 +103,9 @@ const Boardroom = () => {
                         align="end"
                         btnwrap="wrap"
                         width="13rem"
+                        approve={approve}
+                        onReward={onReward}
+                        onRedeem={onRedeem}
                     />
                 </div>
             </div>
