@@ -67,7 +67,7 @@ const Boardroom = () => {
                         <span><a href="https://docs.bomb.money/welcome-start-here/readme" style={{ color: 'rgba(158, 230, 255, 1)' }}>Read Investment Strategy</a></span>
                     </div>
                     <Button
-                        variant='text' style={{ backgroundColor: 'rgba(0, 173, 232, 0.8)', color: 'black', width: '100%', margin: '.5rem 0', fontWeight: '600', textTransform: 'capitalize', fontSize: '1.1rem' }}> Invest Now </Button>
+                        variant='text' href="https://www.bomb.money/" style={{ backgroundColor: 'rgba(0, 173, 232, 0.8)', color: 'black', width: '100%', margin: '.5rem 0', fontWeight: '600', textTransform: 'capitalize', fontSize: '1.1rem' }}> Invest Now </Button>
                     <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
                         <Button variant='text' style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'black', width: '50%', fontWeight: '600', textTransform: 'capitalize', fontSize: '1.1rem' }}>
                             <a
