@@ -9,7 +9,7 @@ import useTotalValueLocked from '../../../hooks/useTotalValueLocked';
 import useEarningsOnBoardroom from '../../../hooks/useEarningsOnBoardroom';
 import useStakedBalanceOnBoardroom from '../../../hooks/useStakedBalanceOnBoardroom';
 import useBombStats from '../../../hooks/useBombStats';
-
+import useFetchBoardroomAPR from '../../../hooks/useFetchBoardroomAPR'
 
 const card = {
     upper: {
@@ -38,11 +38,12 @@ const Boardroom = () => {
     const TVL = useTotalValueLocked();
     const stakedBalance = useStakedBalanceOnBoardroom();
     const bombStats = useBombStats();
+    const boardroomAPR = useFetchBoardroomAPR();
+    const earnings = useEarningsOnBoardroom();
     const tokenPriceInDollars = useMemo(
         () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
         [bombStats],
       );
-    const earnings = useEarningsOnBoardroom();
     const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
 
     return (
@@ -79,7 +80,7 @@ const Boardroom = () => {
                         subHead="Stake BSHARE and earn BOMB every epoch"
                         TVL= {<CountUp style={{ fontSize: '20px' }} end={TVL} separator="," prefix="$" />}
                         staked={Number(getDisplayBalance(totalStaked)).toFixed(2)}
-                        dailyReturn="2"
+                        dailyReturn={boardroomAPR.toFixed(2)}
                         yourStake={getDisplayBalance(stakedBalance)}
                         stakeInDollars={tokenPriceInDollars}
                         stakeIcon={<TokenSymbol symbol="BSHARE" size="20" />}
