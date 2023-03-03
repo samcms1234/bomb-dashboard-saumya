@@ -1,6 +1,9 @@
 import { Button } from '@material-ui/core';
 import React from 'react'
 
+import { ReactComponent as Upload } from '../../../assets/img/upload.svg';
+import { ReactComponent as Download } from '../../../assets/img/download.svg';
+import bomb2 from '../../../assets/img/bomb2.png';
 
 const btcCard = (props) => {
     return (
@@ -44,9 +47,10 @@ const btcCard = (props) => {
                     justifyContent: 'center',
                     width: `${props.width}`
                 }}>
-                    <Button variant='outlined' onClick={props.approve} style={{ borderColor: 'white', borderRadius: '1rem' }}>Deposit</Button>
-                    <Button variant='outlined' onClick={props.onReward} style={{ borderColor: 'white', borderRadius: '1rem' }}>Withdraw</Button>
-                    <Button variant='outlined' onClick={props.onRedeem} style={{ borderColor: 'white', borderRadius: '1rem' }}>Claim Rewards</Button>
+
+                    <Button variant='outlined' onClick={props.approve} style={{ borderColor: 'white', borderRadius: '1rem' }}><Upload className="img-download" width={20} height={15}  />Deposit</Button>
+                    <Button variant='outlined' onClick={props.onReward} style={{ borderColor: 'white', borderRadius: '1rem' }}><Download className="img-download" width={20} height={15} />Withdraw</Button>
+                    <Button variant='outlined' onClick={props.onRedeem} style={{ borderColor: 'white', borderRadius: '1rem' }}><img className='img-bomb2_farm' src={bomb2} alt="" width={15} height={15} />Claim Rewards</Button>
                 </div>
             </div>
         </div >
