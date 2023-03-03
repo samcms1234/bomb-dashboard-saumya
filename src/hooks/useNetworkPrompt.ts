@@ -19,7 +19,7 @@ export const connectToNetwork = async (provider: any) => {
           symbol: 'BNB',
           decimals: 18,
         },
-        rpcUrls: ['https://rpc.ankr.com/bsc'],
+        rpcUrls: [config.defaultProvider],
         blockExplorerUrls: [config.ftmscanUrl],
       },
     ],
