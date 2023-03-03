@@ -2,6 +2,8 @@ import { Button } from '@material-ui/core'
 import React , {useMemo} from 'react'
 import BtcCard from './btcCard'
 import TokenSymbol from '../../../components/TokenSymbol';
+import discord from '../../../assets/img/discord.svg';
+import bshare from '../../../assets/img/bshare-200x200.png';
 import useTotalStakedOnBoardroom from '../../../hooks/useTotalStakedOnBoardroom';
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import CountUp from 'react-countup';
@@ -70,6 +72,7 @@ const Boardroom = () => {
                         variant='text' href="https://www.bomb.money/" style={{ backgroundColor: 'rgba(0, 173, 232, 0.8)', color: 'black', width: '100%', margin: '.5rem 0', fontWeight: '600', textTransform: 'capitalize', fontSize: '1.1rem' }}> Invest Now </Button>
                     <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
                         <Button variant='text' style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'black', width: '50%', fontWeight: '600', textTransform: 'capitalize', fontSize: '1.1rem' }}>
+                            <img src={discord} height={22} width={22} alt="" /> 
                             <a
                                 href="http://discord.bomb.money/"
                                 rel="noopener noreferrer"
